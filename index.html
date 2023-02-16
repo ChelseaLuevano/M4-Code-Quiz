@@ -21,27 +21,38 @@
     </header>
 
     <main>
+        <!--Quiz Game -->
         <section>
             <h1 class="large-font">Coding Quiz Challenge</h1>
+                <!-- Quiz Questions -->
                 <div class="quiz questions">
                     <div class=" large-font question-content">Try to answer the following JavaScript code-related 
                         questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</div>
-                    <button class="Start Quiz">Start Quiz</button>
+                    <button class="start-button">Start Quiz</button>
+                    <!-- Quiz Answer Buttons -->
+                    <div>
+                        <button class="first-answer-button"></button>
+                        <button class="second-answer-button"></button>
+                        <button class="third-answer-button"></button>
+                        <button class="fourth-answer-button"></button>
                     </div>
-            
+                    </div>
         </section>
         
+        <!-- Quiz High Scores Results -->
         <section>
             <div class="quiz scores">
-
+                <div class="win-loss-container">
+                </div>
+                <h2>Wins: <span class="win">0 </span> </h2>
+                <h2>Losses: <span class="lose">0</span></h2>
+                <div>
+                    <button class="back-button">Go Back</button>
+                    <button class="clear-button">Clear High Score</button>
+                </div>
             </div>
         </section>
-        
-        <section>
-            <div class="quiz timer">
-
-            </div>
-        </section>
+    
     </main>
 
     <script src="assets/js/script.js"></script>
