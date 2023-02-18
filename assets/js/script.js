@@ -19,15 +19,14 @@ let answer2Text = document.getElementById("answer2");
 let answer3Text = document.getElementById("answer3");
 let answer4Text = document.getElementById("answer4");
 let lastQuestionResult = document.getElementById("result");
-
+let finalScore = document.getElementById("final-score");
+let initials = document.getElementById("initials").value;
 
 // Button Global Variables
-let startButton = document.querySelector(".start-button")
-let clearButton = document.querySelector(".clear-button")
-let backButton = document.querySelector(".back-button")
-
-
-
+let startButton = document.querySelector(".start-button");
+let clearButton = document.querySelector(".clear-button");
+let backButton = document.querySelector(".back-button");
+let submitButton = document.querySelector(".submit-button");
 
 // Nested Array to store questions and answers for quiz
 let questions = [{
@@ -108,7 +107,6 @@ answer.addEventListener("click", function(event) {
     console.log(score);
 });
 
-
 // Next Question
 function nextQuestion() {
 
@@ -142,7 +140,6 @@ function winGame () {
     console.log("You Win")
 }
 
-
 // Lose Game Function
 function loseGame () {
     console.log("You Lose")
@@ -169,14 +166,34 @@ function startTimer() {
  
 }
 
-// High Scores Function
- // scoreRecord = localStorage.getItem("score");
+// Determine User's final score to display on page
+finalScore.textContent = score;
+
+// User saves game score to High Scores 
+scoreRecord = localStorage.getItem(initials+ " - " + score );
+console.log(scoreRecord);
+
+
+let highScoresData = document.createElement("li");
+let userHighScore = document.createTextNode(scoreRecord);
+highScoresData.appendChild(userHighScore);
+document.getElementById("scores-container").appendChild(highScoresData);
+
     //     if (scoreRecord === null) {
     //         score = 0;
     //     } else {
     //      //If a value is retrieved from client storage set the winCounter to that value
     //         score = storedRecord;
     //     }
+
+// Submit Button Event Listener
+submitButton.addEventListener("click", highScoresDisplay);
+
+// When User submits initials information, display high scores page
+function highScoresDisplay (){
+    doneContainer.style.display = 'none';
+    scoresContainer.style.display = 'block';
+}
 
 // End Game Function
 function endGame() {
