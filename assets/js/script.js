@@ -92,25 +92,19 @@ answer.addEventListener("click", function(event) {
      // Correct Answer Logic
     if (currentAnswer === clickedAnswer) {
         console.log("right answer")
-        score++;
+        score = score + 2;
         resultContainer.style.display = 'block';
         lastQuestionResult.textContent = "Right!"
     }
-        
+    // Wrong Answer Logic
     else {
         console.log("wrong answer")
+        timerCount = timerCount - 10;
         resultContainer.style.display = 'block';
         lastQuestionResult.textContent = "Wrong!"
         // Need to add statement to reduce time somehow here 
     }
     nextQuestion();
-    scoreRecord = localStorage.getItem("score");
-        if (scoreRecord === null) {
-            score = 0;
-        } else {
-         //If a value is retrieved from client storage set the winCounter to that value
-            score = storedRecord;
-        }
     console.log(score);
 });
 
@@ -119,27 +113,26 @@ answer.addEventListener("click", function(event) {
 function nextQuestion() {
 
     if (currentQuestionIndex === -1) {
-        i=0;
-        questionText.textContent = questions[i].prompt;
-        answer1Text.textContent = questions[i].choices[0];
-        answer2Text.textContent = questions[i].choices[1];
-        answer3Text.textContent = questions[i].choices[2];
-        answer4Text.textContent = questions[i].choices[3];
-        currentAnswer = questions[i].answer;
+        currentQuestionIndex=0;
+        questionText.textContent = questions[currentQuestionIndex].prompt;
+        answer1Text.textContent = questions[currentQuestionIndex].choices[0];
+        answer2Text.textContent = questions[currentQuestionIndex].choices[1];
+        answer3Text.textContent = questions[currentQuestionIndex].choices[2];
+        answer4Text.textContent = questions[currentQuestionIndex].choices[3];
+        currentAnswer = questions[currentQuestionIndex].answer;
         currentQuestionIndex++;
     }
-    else if (questions.length === currentQuestionIndex && document.getElementById(answer).click) {
+    else if (questions.length === currentQuestionIndex) {
         endGame()
     }
     else
      {
-        i++;
-        questionText.textContent = questions[i].prompt;
-        answer1Text.textContent = questions[i].choices[0];
-        answer2Text.textContent = questions[i].choices[1];
-        answer3Text.textContent = questions[i].choices[2];
-        answer4Text.textContent = questions[i].choices[3];
-        currentAnswer = questions[i].answer
+        questionText.textContent = questions[currentQuestionIndex].prompt;
+        answer1Text.textContent = questions[currentQuestionIndex].choices[0];
+        answer2Text.textContent = questions[currentQuestionIndex].choices[1];
+        answer3Text.textContent = questions[currentQuestionIndex].choices[2];
+        answer4Text.textContent = questions[currentQuestionIndex].choices[3];
+        currentAnswer = questions[currentQuestionIndex].answer;
         currentQuestionIndex++;
     }
 }
@@ -160,28 +153,35 @@ function startTimer() {
   // Sets timer
   timer = setInterval(function() {
     timerCount--;
-    timerElement.textContent = timerCount;
     if (timerCount > 0) {
+        timerElement.textContent = timerCount;
       // Tests if win condition is met
       if (questions.length === currentQuestionIndex) 
         winGame()
       }
     // Tests if time has run out
-    if (timerCount === 0) {
+    if (timerCount <= 0) {
       // Clears interval
-      clearInterval(timer);
+      endGame();
       loseGame();
     }
   }, 1000);
+ 
 }
+
+// High Scores Function
+ // scoreRecord = localStorage.getItem("score");
+    //     if (scoreRecord === null) {
+    //         score = 0;
+    //     } else {
+    //      //If a value is retrieved from client storage set the winCounter to that value
+    //         score = storedRecord;
+    //     }
 
 // End Game Function
 function endGame() {
     doneContainer.style.display = 'block';
     questionsContainer.style.display ='none';
-    if (winGame || loseGame){
-        clearInterval(timer)
-
+    clearInterval(timer);
     }
     
-}
