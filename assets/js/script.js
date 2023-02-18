@@ -38,25 +38,8 @@ let answer = document.querySelector(".answer")
 
 
 
-
-// Event listener to clickedAnswer variable, which represents the most recent answer button clicked by user
-answer.addEventListener("click", function(event) {
-    let element = event.target
-
-    if (element.matches(".box")) {
-        let clickedAnswer = element.getAttribute("data-number");
-        
-        console.log(clickedAnswer)
-    };   
-   
-});
-
-
-
-
-
 // Got this code from Live channel 
-// // hide start screen
+// hide start screen
 // let startScreenEl = document.getElementById('start-screen');
 // startScreenEl.setAttribute('class', 'hide');
 
@@ -64,7 +47,45 @@ answer.addEventListener("click", function(event) {
 // questionsEl.removeAttribute('class');
 // let score = 0;
 
+// Start Game Event Listener
+startButton.addEventListener("click", startGame);
+
 // Start Game Function
+function startGame () {
+    let x = document.getElementById("start-screen");
+  
+    if(x.style.display === "none") {
+        x.style.display = "block";
+    }
+    else {
+        x.style.display = "none";
+    }
+}
+
+let currentAnswer = "answer 3"
+
+// Event listener to clickedAnswer variable, which represents the most recent answer button clicked by user
+answer.addEventListener("click", function(event) {
+    let element = event.target
+    let clickedAnswer 
+
+    if (element.matches(".box")) {
+        clickedAnswer = element.textContent;
+
+        console.log(clickedAnswer)
+    };   
+   
+    // Correct Answer Logic
+    if (currentAnswer === clickedAnswer) {
+        console.log("right answer")
+      }
+    // Wrong Answer Logic
+        else {
+          console.log("wrong answer")
+        }
+
+});
+
 
 
 // Questions Function
@@ -86,21 +107,7 @@ answer.addEventListener("click", function(event) {
 // Game Over Function
 
 
-// Correct Answer Function
-// function correctAnswer {
-//     if () {
-        
-//         if (questions.prompt[1]) {
-//     } else {
-        
-//     }
-   
-
-// }
-
-// // Wrong Answer Function
-// function wrongAnswer{
-
-// }
-
-
+// End Game Function
+function endGame() {
+    clearInterval
+}
