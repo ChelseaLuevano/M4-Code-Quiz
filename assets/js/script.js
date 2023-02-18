@@ -4,13 +4,14 @@ let timer;
 let timerCount;
 let score = 0;
 let currentAnswer;
-let newGame;
+let currentQuestionIndex;
 
 // Variables by Element ID
 let startContainer = document.getElementById("start-container");
 let questionsContainer = document.getElementById("questions-container");
 let resultContainer = document.getElementById("result-container");
 let scoresContainer = document.getElementById("scores-container");
+let doneContainer = document.getElementById("done-container");
 let questionText = document.getElementById("question");
 let answer = document.getElementById("answer");
 let answer1Text = document.getElementById("answer1");
@@ -24,6 +25,7 @@ let lastQuestionResult = document.getElementById("result");
 let startButton = document.querySelector(".start-button")
 let clearButton = document.querySelector(".clear-button")
 let backButton = document.querySelector(".back-button")
+
 
 
 
@@ -49,9 +51,9 @@ let questions = [{
         answer: '<script>',
     },
     {
-        prompt: 'hold',
-        choices: ['tbd', 'tbd', 'tbd', 'tbd'],
-        answer: 'tbd',
+        prompt: 'Which are the correct “if” statements to execute certain code if “x” is equal to 2?',
+        choices: ['if(x 2)', 'if(x = 2)', 'if(x != 2 )', 'if(x == 2)'],
+        answer: 'if(x == 2)',
     }
 ]
 
@@ -59,6 +61,7 @@ let questions = [{
 questionsContainer.style.display ='none';
 scoresContainer.style.display = 'none';
 resultContainer.style.display = 'none';
+doneContainer.style.display = 'none';
 
 // Start Game Event Listener
 startButton.addEventListener("click", startGame);
@@ -67,8 +70,10 @@ startButton.addEventListener("click", startGame);
 function startGame () {
     startContainer.style.display = "none"; 
     // new game
-    newGame = -1
+    currentQuestionIndex = -1
     questionsContainer.style.display = "block";
+    timerCount = 75;
+    startTimer();
     nextQuestion();
 }
 
@@ -103,39 +108,40 @@ answer.addEventListener("click", function(event) {
             lastQuestionResult.textContent = "Wrong!"
              // Need to add statement to reduce time somehow here 
     }
-
+    nextQuestion();
 });
 
 
 // Next Question
 function nextQuestion() {
 
-    if (newGame === -1) {
+    if (currentQuestionIndex === -1) {
         i=0;
-
-    questionText.textContent = questions[i].prompt;
-    answer1Text.textContent = questions[i].choices[0];
-    answer2Text.textContent = questions[i].choices[1];
-    answer3Text.textContent = questions[i].choices[2];
-    answer4Text.textContent = questions[i].choices[3];
+        questionText.textContent = questions[i].prompt;
+        answer1Text.textContent = questions[i].choices[0];
+        answer2Text.textContent = questions[i].choices[1];
+        answer3Text.textContent = questions[i].choices[2];
+        answer4Text.textContent = questions[i].choices[3];
+        currentAnswer = questions[i].answer;
+        currentQuestionIndex++;
     }
-    else if (newGame === 0) {
+    else if (questions.length === currentQuestionIndex && document.getElementById(answer).click) {
+        doneContainer.style.display = 'block';
+        questionsContainer.style.display ='none';
+    }
+    else
+     {
         i++;
-    questionText.textContent = questions[i].prompt;
-    answer1Text.textContent = questions[i].choices[0];
-    answer2Text.textContent = questions[i].choices[1];
-    answer3Text.textContent = questions[i].choices[2];
-    answer4Text.textContent = questions[i].choices[3];
+        questionText.textContent = questions[i].prompt;
+        answer1Text.textContent = questions[i].choices[0];
+        answer2Text.textContent = questions[i].choices[1];
+        answer3Text.textContent = questions[i].choices[2];
+        answer4Text.textContent = questions[i].choices[3];
+        currentAnswer = questions[i].answer
+        currentQuestionIndex++;
     }
-    console.log("nextQuestion")
-    
-    currentAnswer = questions[i].answer
-    
 }
   
-    
-
-
 // Win Game Function
 function winGame () {
     console.log("You Win")
@@ -147,30 +153,31 @@ function loseGame () {
     console.log("You Lose")
 }
 
-// The setTimer function starts and stops the timer and triggers winGame() and loseGame()
-// function startTimer() {
-//   // Sets timer
-//   timer = setInterval(function() {
-//     timerCount--;
-//     timerElement.textContent = timerCount;
-//     if (timerCount >= 0) {
-//       // Tests if win condition is met
-//       if (questions.length) && (timerCount > 0) {
-//         // Clears interval and stops timer
-//         clearInterval(timer);
-//         winGame();
-//       }
-//     }
-//     // Tests if time has run out
-//     if (timerCount === 0) {
-//       // Clears interval
-//       clearInterval(timer);
-//       loseGame();
-//     }
-//   }, 1000);
-// }
+// The startTimer function starts and stops the timer and triggers winGame() and loseGame()
+function startTimer() {
+  // Sets timer
+  timer = setInterval(function() {
+    timerCount--;
+    timerElement.textContent = timerCount;
+    if (timerCount > 0) {
+      // Tests if win condition is met
+      if (questions.length === currentQuestionIndex) 
+        winGame()
+      }
+    // Tests if time has run out
+    if (timerCount === 0) {
+      // Clears interval
+      clearInterval(timer);
+      loseGame();
+    }
+  }, 1000);
+}
 
 // End Game Function
 function endGame() {
-    clearInterval
+    if (winGame || loseGame){
+        doneContainer.style.display = 'block';
+        clearInterval(timer)
+    }
+    
 }
