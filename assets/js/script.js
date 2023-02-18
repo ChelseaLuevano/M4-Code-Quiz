@@ -1,21 +1,28 @@
 // Initial Global Variables
 let questionsContainer = document.querySelector(".questions-container")
 let timerElement = document.querySelector(".timer-count")
+let timer;
+let timerCount;
+let score = 0;
+let currentAnswer;
+let newGame;
 
 // Variables by Element ID
-let startScreen = document.getElementById("start-screen");
+let startContainer = document.getElementById("start-container");
+let questionContainer = document.getElementById("question-container");
 let questionText = document.getElementById("question");
+let answer = document.getElementById("answer");
 let answer1Text = document.getElementById("answer1");
 let answer2Text = document.getElementById("answer2");
 let answer3Text = document.getElementById("answer3");
 let answer4Text = document.getElementById("answer4");
 
+
 // Button Global Variables
 let startButton = document.querySelector(".start-button")
-
 let clearButton = document.querySelector(".clear-button")
 let backButton = document.querySelector(".back-button")
-let answer = document.querySelector(".answer")
+
 
 
 // Nested Array to store questions and answers for quiz
@@ -37,16 +44,17 @@ let questions = [{
     {
         prompt: 'Inside which HTML element do we put the JavaScript?',
         choices: ['<js>', '<javascript>', '<script>', '<head>'],
-        answer: '<script>'
+        answer: '<script>',
     },
     {
         prompt: 'hold',
         choices: ['tbd', 'tbd', 'tbd', 'tbd'],
-        answer: 'tbd'
+        answer: 'tbd',
     }
 ]
 
-
+// Initial containers to hide when page loads
+questionsContainer.style.display ='none';
 
 // Got this code from Live channel 
 // hide start screen
@@ -63,66 +71,99 @@ startButton.addEventListener("click", startGame);
 
 // Start Game Function and display first question
 function startGame () {
-    startScreen.style.display = "none"; 
-    questionText.textContent = questions[0].prompt;
-    answer1Text.textContent = questions[0].choices[0];
-    answer2Text.textContent = questions[0].choices[1];
-    answer3Text.textContent = questions[0].choices[2];
-    answer4Text.textContent = questions[0].choices[3];
-}
+    startContainer.style.display = "none"; 
 
-// Questions Function
-for (let i = 0; i < questions.length; i++) {
-    // let response = window.prompt(questions[i.prompt])
-    if (response === questions[i].answer){
-        score++;
-        alert("Correct!");
-    } else {
-        alert ("Wrong!")
-        // Need to add statement to reduce time somehow here
-    }    
+    // new game
+    newGame = -1
     
+    questionsContainer.style.display = "block";
+
+    nextQuestion();
 }
-
-// Next Question
-// function nextQuestion(){
-//     console.log("nextQuestion")
-// }
-
-let currentAnswer = "answer 3"
 
 // Event listener to clickedAnswer variable, which represents the most recent answer button clicked by user
 answer.addEventListener("click", function(event) {
     let element = event.target
-    let clickedAnswer 
+    let clickedAnswer; 
 
     if (element.matches(".box")) {
         clickedAnswer = element.textContent;
 
         console.log(clickedAnswer)
     };   
-   
-    // Correct Answer Logic
+        console.log(currentAnswer)
+
+     // Correct Answer Logic
     if (currentAnswer === clickedAnswer) {
         console.log("right answer")
-      }
-    // Wrong Answer Logic
-        else {
-          console.log("wrong answer")
-        }
+        score++;
+    }
+        
+    else {
+            console.log("wrong answer")
+             // Need to add statement to reduce time somehow here 
+    }
 
+   
 });
 
 
+// Next Question
+function nextQuestion() {
+for (let i = 0; i < questions.length; i++) {
+    questionText.textContent = questions[i].prompt;
+    answer1Text.textContent = questions[i].choices[0];
+    answer2Text.textContent = questions[i].choices[1];
+    answer3Text.textContent = questions[i].choices[2];
+    answer4Text.textContent = questions[i].choices[3];
+}
+    console.log("nextQuestion")
+    questionText.textContent = questions[i].prompt;
+    answer1Text.textContent = questions[i].choices[0];
+    answer2Text.textContent = questions[i].choices[1];
+    answer3Text.textContent = questions[i].choices[2];
+    answer4Text.textContent = questions[i].choices[3];
+
+    currentAnswer = questions[i].answer
+    
+}
   
     
 // }
 
-// You Win Function
+// Win Game Function
+function winGame () {
+    console.log("You Win")
+}
 
 
-// Game Over Function
+// Lose Game Function
+function loseGame () {
+    console.log("You Lose")
+}
 
+// The setTimer function starts and stops the timer and triggers winGame() and loseGame()
+// function startTimer() {
+//   // Sets timer
+//   timer = setInterval(function() {
+//     timerCount--;
+//     timerElement.textContent = timerCount;
+//     if (timerCount >= 0) {
+//       // Tests if win condition is met
+//       if (questions.length) && (timerCount > 0) {
+//         // Clears interval and stops timer
+//         clearInterval(timer);
+//         winGame();
+//       }
+//     }
+//     // Tests if time has run out
+//     if (timerCount === 0) {
+//       // Clears interval
+//       clearInterval(timer);
+//       loseGame();
+//     }
+//   }, 1000);
+// }
 
 // End Game Function
 function endGame() {

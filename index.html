@@ -21,24 +21,22 @@
     </header>
 
     <main>
-
-
-        
-       
-        <section class="start-screen" id="start-screen">
+        <section class="start-screen" id="start-container">
+            <div>
              <!-- Start Screen -->
             <h1 class="large-font">Coding Quiz Challenge</h1>
                 <div class="large-font question-content" >Try to answer the following JavaScript code-related 
                     questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</div>
                 <button class="start-button">Start Quiz</button>
+            </div>
         </section> 
                
         <section>
         <!-- Quiz Questions -->
-             <div class="quiz questions-container" id="container">
+             <div class="quiz questions-container" id="questions-container">
                 <h2 id="question">Question</h2>
                 <!-- Quiz Answer Buttons -->
-                <ul class="answer">
+                <ul class="answer" id="answer">
                     <li><button class="box" id="answer1">answer 1</button></li>
                     <li><button class="box" id="answer2">answer 2</button></li>
                     <li><button class="box" id="answer3">answer 3</button></li>
