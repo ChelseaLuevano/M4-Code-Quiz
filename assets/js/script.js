@@ -1,5 +1,4 @@
 // Initial Global Variables
-let questionsContainer = document.querySelector(".questions-container")
 let timerElement = document.querySelector(".timer-count")
 let timer;
 let timerCount;
@@ -9,13 +8,16 @@ let newGame;
 
 // Variables by Element ID
 let startContainer = document.getElementById("start-container");
-let questionContainer = document.getElementById("question-container");
+let questionsContainer = document.getElementById("questions-container");
+let resultContainer = document.getElementById("result-container");
+let scoresContainer = document.getElementById("scores-container");
 let questionText = document.getElementById("question");
 let answer = document.getElementById("answer");
 let answer1Text = document.getElementById("answer1");
 let answer2Text = document.getElementById("answer2");
 let answer3Text = document.getElementById("answer3");
 let answer4Text = document.getElementById("answer4");
+let lastQuestionResult = document.getElementById("result");
 
 
 // Button Global Variables
@@ -55,29 +57,18 @@ let questions = [{
 
 // Initial containers to hide when page loads
 questionsContainer.style.display ='none';
-
-// Got this code from Live channel 
-// hide start screen
-// let startScreenEl = document.getElementById('start-screen');
-// startScreenEl.setAttribute('class', 'hide');
-
-// // un-hide questions section
-// questionsEl.removeAttribute('class');
-// let score = 0;
+scoresContainer.style.display = 'none';
+resultContainer.style.display = 'none';
 
 // Start Game Event Listener
 startButton.addEventListener("click", startGame);
 
-
 // Start Game Function and display first question
 function startGame () {
     startContainer.style.display = "none"; 
-
     // new game
     newGame = -1
-    
     questionsContainer.style.display = "block";
-
     nextQuestion();
 }
 
@@ -97,39 +88,53 @@ answer.addEventListener("click", function(event) {
     if (currentAnswer === clickedAnswer) {
         console.log("right answer")
         score++;
+        scoreRecord = localStorage.getItem("score");
+        if (scoreRecord === null) {
+            score = 0;
+        } else {
+         //If a value is retrieved from client storage set the winCounter to that value
+            score= storedRecord;
+        }
+        lastQuestionResult.textContent = "Right!"
     }
         
     else {
             console.log("wrong answer")
+            lastQuestionResult.textContent = "Wrong!"
              // Need to add statement to reduce time somehow here 
     }
 
-   
 });
 
 
 // Next Question
 function nextQuestion() {
-for (let i = 0; i < questions.length; i++) {
-    questionText.textContent = questions[i].prompt;
-    answer1Text.textContent = questions[i].choices[0];
-    answer2Text.textContent = questions[i].choices[1];
-    answer3Text.textContent = questions[i].choices[2];
-    answer4Text.textContent = questions[i].choices[3];
-}
-    console.log("nextQuestion")
-    questionText.textContent = questions[i].prompt;
-    answer1Text.textContent = questions[i].choices[0];
-    answer2Text.textContent = questions[i].choices[1];
-    answer3Text.textContent = questions[i].choices[2];
-    answer4Text.textContent = questions[i].choices[3];
 
+    if (newGame === -1) {
+        i=0;
+
+    questionText.textContent = questions[i].prompt;
+    answer1Text.textContent = questions[i].choices[0];
+    answer2Text.textContent = questions[i].choices[1];
+    answer3Text.textContent = questions[i].choices[2];
+    answer4Text.textContent = questions[i].choices[3];
+    }
+    else if (newGame === 0) {
+        i++;
+    questionText.textContent = questions[i].prompt;
+    answer1Text.textContent = questions[i].choices[0];
+    answer2Text.textContent = questions[i].choices[1];
+    answer3Text.textContent = questions[i].choices[2];
+    answer4Text.textContent = questions[i].choices[3];
+    }
+    console.log("nextQuestion")
+    
     currentAnswer = questions[i].answer
     
 }
   
     
-// }
+
 
 // Win Game Function
 function winGame () {
