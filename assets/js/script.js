@@ -93,22 +93,25 @@ answer.addEventListener("click", function(event) {
     if (currentAnswer === clickedAnswer) {
         console.log("right answer")
         score++;
-        scoreRecord = localStorage.getItem("score");
-        if (scoreRecord === null) {
-            score = 0;
-        } else {
-         //If a value is retrieved from client storage set the winCounter to that value
-            score= storedRecord;
-        }
+        resultContainer.style.display = 'block';
         lastQuestionResult.textContent = "Right!"
     }
         
     else {
-            console.log("wrong answer")
-            lastQuestionResult.textContent = "Wrong!"
-             // Need to add statement to reduce time somehow here 
+        console.log("wrong answer")
+        resultContainer.style.display = 'block';
+        lastQuestionResult.textContent = "Wrong!"
+        // Need to add statement to reduce time somehow here 
     }
     nextQuestion();
+    scoreRecord = localStorage.getItem("score");
+        if (scoreRecord === null) {
+            score = 0;
+        } else {
+         //If a value is retrieved from client storage set the winCounter to that value
+            score = storedRecord;
+        }
+    console.log(score);
 });
 
 
@@ -126,8 +129,7 @@ function nextQuestion() {
         currentQuestionIndex++;
     }
     else if (questions.length === currentQuestionIndex && document.getElementById(answer).click) {
-        doneContainer.style.display = 'block';
-        questionsContainer.style.display ='none';
+        endGame()
     }
     else
      {
@@ -175,9 +177,11 @@ function startTimer() {
 
 // End Game Function
 function endGame() {
+    doneContainer.style.display = 'block';
+    questionsContainer.style.display ='none';
     if (winGame || loseGame){
-        doneContainer.style.display = 'block';
         clearInterval(timer)
+
     }
     
 }
