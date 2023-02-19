@@ -78,6 +78,7 @@ button {
 #done-container div {
     display:flex;
     flex-direction: row;
+    align-content: stretch;
 }
 
 /* All answer choices should have same size despite text length */
