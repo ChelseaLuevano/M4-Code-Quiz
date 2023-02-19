@@ -1,11 +1,26 @@
 
-
-
-/* Styling for "View High Scores Link" */
-.header nav {
-    display: inline-block;
+:root {
+    --dark-color: rgb(54, 25, 129);
+    --light-color:rgb(214, 58, 214);
 }
 
+
+header {
+    margin: 2%;
+}
+
+/* Styling for navgiation */
+header nav {
+    display: inline-block;
+   
+}
+
+/* Styling for "View High Scores Link" */
+header nav a {
+    color: var(--light-color);
+    text-decoration: none;
+    font-weight: normal;
+}
 /* Styling for Timer */
 .timer-count {
     float: right;
@@ -17,7 +32,26 @@
     list-style-type: none;
 }
 
+/* Styling display for all main content containers */
 .quiz {
     display: flex;
-    width: 50%;
+    flex-direction: column;
+    margin: 8%;
+    padding: 2%;
+
+    
+    
+}
+
+h1 {
+    font-size: 150%;
+}
+
+#start-container {
+    /* justify-content: center; */
+}
+
+button {
+    margin-top: 2%;
+    margin-bottom: 2% ;
 }
