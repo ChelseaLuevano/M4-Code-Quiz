@@ -138,11 +138,7 @@ function nextQuestion() {
         currentQuestionIndex++;
     }
 }
-  
-// Win Game Function
-function winGame () {
-    console.log("You completed the quiz")
-}
+
 
 // Lose Game Function
 function loseGame () {
