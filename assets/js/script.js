@@ -34,28 +34,28 @@ let submitButton = document.querySelector(".submit-button");
 // Nested Array to store questions and answers for quiz
 let questions = [{
         prompt: 'What is a named container that allows us to store data in our code?',
-        choices: ['Class', 'Variable', 'Function', 'Object'],
-        answer: 'Class',
+        choices: ['1. Class', '2. Variable', '3. Function', '4. Object'],
+        answer: '1. Class',
     }, 
     {
         prompt: 'What is NOT a primitive datatype in JavaScript?',
-        choices: ['Number', 'Boonlean', 'NULL', 'Array'],
-        answer: 'Array',
+        choices: ['1. Number', '2. Boonlean', '3. NULL', '4. Array'],
+        answer: '4. Array',
     }, 
     {
         prompt: '______ are code structures that listen for activity in the browser, and run code in response.',
-        choices: ['Query Selectors', 'Event Handlers', 'Objects', 'Functions'],
-        answer: 'Event Handlers',
+        choices: ['1. Query Selectors', '2. Event Handlers', '3. Objects', '4. Functions'],
+        answer: '2. Event Handlers',
     },
     {
         prompt: 'Inside which HTML element do we put the JavaScript?',
-        choices: ['<js>', '<javascript>', '<script>', '<head>'],
-        answer: '<script>',
+        choices: ['1. <js>', '2. <javascript>', '3. <script>', '4. <head>'],
+        answer: '3. <script>',
     },
     {
         prompt: 'Which are the correct “if” statements to execute certain code if “x” is equal to 2?',
-        choices: ['if(x 2)', 'if(x = 2)', 'if(x != 2 )', 'if(x == 2)'],
-        answer: 'if(x == 2)',
+        choices: ['1. if(x 2)', '2. if(x = 2)', '3. if(x != 2 )', '4. if(x == 2)'],
+        answer: '4. if(x == 2)',
     }
 ]
 
@@ -224,3 +224,19 @@ function highScoresDisplay (){
     //      //If a value is retrieved from client storage set the winCounter to that value
     //         score = storedRecord;
     //     }
+
+// Back Button Event Listener
+backButton.addEventListener("click",goBack);
+
+function goBack (){
+    doneContainer.style.display = 'block';
+    scoresContainer.style.display = 'none'; 
+};
+
+// Clear High Scores Button Event Listener
+clearButton.addEventListener("click",clearScores);
+
+// this will delete the localStorage data somehow
+function clearScores() {
+
+};

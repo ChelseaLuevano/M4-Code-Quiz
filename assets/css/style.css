@@ -48,12 +48,24 @@ h1 {
     margin: 0.5%;
 }
 
+/* Paragraph text styling  */
 p {
     margin: 0.5%;
 }
 
+/* 
 #start-container {
     
+} */
+
+
+/* All buttons styling */
+button {
+    margin: 0.5%;
+    padding: 1%;
+    border-radius: 4px;
+    background-color: var(--dark-color);
+    color: var(--button-text-color);
 }
 
 /* start-button styling */
@@ -61,10 +73,7 @@ p {
     width: 12%;
 }
 
-button {
-    margin: 0.5%;
-    padding: 1%;
-    border-radius: 4px;
-    background-color: var(--dark-color);
-    color: var(--button-text-color);
+#done-container div {
+    display:flex;
+    flex-direction: row;
 }
