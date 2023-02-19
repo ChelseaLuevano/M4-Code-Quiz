@@ -7,7 +7,7 @@
 }
 
 /* Styling for Timer */
-.timer {
+.timer-count {
     float: right;
 }
 
@@ -15,4 +15,9 @@
 /* Remove bullets from answer button list */
 .questions-container ul {
     list-style-type: none;
+}
+
+.quiz {
+    display: flex;
+    width: 50%;
 }
