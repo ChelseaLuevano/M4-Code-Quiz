@@ -43,7 +43,7 @@ let questions = [{
         answer: 'Array',
     }, 
     {
-        prompt: '____ are code structures that listen for activity in the broswer, and run code in response.',
+        prompt: '______ are code structures that listen for activity in the browser, and run code in response.',
         choices: ['Query Selectors', 'Event Handlers', 'Objects', 'Functions'],
         answer: 'Event Handlers',
     },
