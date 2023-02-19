@@ -22,7 +22,10 @@ let lastQuestionResult = document.getElementById("result");
 let finalScore = document.getElementById("final-score");
 let userInitials = document.getElementById("initials").value;
 
-// Button Global Variables
+// Variables by Query Selector
+let highScoreBoard= document.querySelector("#scores-container ol");
+
+    // Button Global Variables
 let startButton = document.querySelector(".start-button");
 let clearButton = document.querySelector(".clear-button");
 let backButton = document.querySelector(".back-button");
@@ -183,28 +186,35 @@ submitButton.addEventListener("click", highScoresDisplay);
 //  scoreRecord = localStorage.getItem(initials+ " - " + score );
 
 
+let highScoresStaticList = [{userInitials:'jfk',score:'3'}, {userInitials:'lax', score:'3'},
+    {userInitials:'lax',score:'1'}
+];
+
 // When User submits initials information, display high scores page
 function highScoresDisplay (){
     doneContainer.style.display = 'none';
     scoresContainer.style.display = 'block'; 
     resultContainer.style.display = 'none';
 
-    userInitials.textContent = initials.value
+    userInitials.textContent = initials.value;
 
-    // Create an ordered list element to store highscores 
-    let highScoresList = document.createElement("ol");
+    highScoreBoard.textContent = highScoresStaticList.userInitials[0] + highScoresStaticList.score[0] ;
 
-    // Create ordered list items
-    let userScore1 = document.createElement("li");
-    let userScore2 = document.createElement("li");
-    let userScore3 = document.createElement("li");
-    let userScore4 = document.createElement("li");
+    // // Create an ordered list element to store highscores 
+    // let highScoresList = document.createElement("ol");
 
-    let userHighScore = document.createTextNode("highscore");
-    highScoresList.appendChild(userHighScore);
-    document.getElementById("scores-container").appendChild(highScoresList);
+    // // Create ordered list items
+    // let userScore1 = document.createElement("li");
+    // let userScore2 = document.createElement("li");
+    // let userScore3 = document.createElement("li");
+    // let userScore4 = document.createElement("li");
 
-    console.log(scoreRecord);
+
+    // let userHighScore = document.createTextNode("highscore");
+    // highScoresList.appendChild(userHighScore);
+    // document.getElementById("scores-container").appendChild(highScoresList);
+
+    // console.log(scoreRecord);
 }
 
 

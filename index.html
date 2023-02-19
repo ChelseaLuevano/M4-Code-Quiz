@@ -14,14 +14,11 @@
             <a href="#scores-container"><h2>View High Scores</h2></a>
         </nav>
         <!-- Quiz Timer -->
-        <div class="quiz timer">
-            <div>
-            <h2 class="timer-count">Time: 75</h2>
-        </div>
+        <h2 class="timer-count">Time: 75</h2>
     </header>
 
     <main>
-        <section class="start-screen" id="start-container">
+        <section class="quiz start-screen" id="start-container">
             <div>
              <!-- Start Screen -->
             <h1 class="large-font">Coding Quiz Challenge</h1>
@@ -48,7 +45,7 @@
         
         <!-- Last Question Results Screen -->
         <section>
-            <div class="question-result" id="result-container">
+            <div class="quiz question-result" id="result-container">
                 <p id="result">Wrong!</p>
             </div>
         </section>
@@ -69,14 +66,13 @@
         </section>
 
         <!-- Quiz High Scores Results Screen-->
-        <section>
-            <div class="quiz scores" id="scores-container">
-                <h2>High Scores: <span class="high-score">0 </span> </h2>
-                <div>
-                    <button class="back-button">Go Back</button>
-                    <button class="clear-button">Clear High Score</button>
-                </div>
-            </div>
+        <section class="quiz scores" id="scores-container">
+            <h2>High Scores:</h2>
+            <ol>
+                <li>Initials - ##</li>
+            </ol>
+            <button class="back-button">Go Back</button>
+            <button class="clear-button">Clear High Score</button>
         </section>
     
     </main>
