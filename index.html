@@ -21,10 +21,10 @@
     <main>
         <section class="quiz start-screen" id="start-container">
              <!-- Start Screen -->
-            <h1 class="large-font">Coding Quiz Challenge</h1>
-                <div class="large-font question-content" >Try to answer the following JavaScript code-related 
+            <h1 class="large-font question-conten">Coding Quiz Challenge</h1>
+                <p>Try to answer the following JavaScript code-related 
                     questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!
-                </div>
+                </p>
                 <button class="start-button">Start Quiz</button>
         </section> 
                
@@ -51,28 +51,26 @@
         </section>
 
         <!-- All Done Screen-->
-        <section>
-            <div class="quiz end" id="done-container">
-                <h2>All Done!</h2>
+        <section class="quiz end" id="done-container">
+                <h1>All Done!</h1>
                 <p>Your final score is: <span id="final-score">0</span></p>
                 <div>
                     <form class="initials-form" >
-                        Enter Initials: <br>
-                        <input type="text" name="initialbox" id="initials" value="">
+                    Enter Initials:
+                    <input type="text" name="initialbox" id="initials" value="">
                     </form>
                     <button class="submit-button">submit</button>
                 </div>
-            </div>
         </section>
 
         <!-- Quiz High Scores Results Screen-->
         <section class="quiz scores" id="scores-container">
-            <h1>High Scores:</h1>
+            <h1>High Scores:</h1> <br>
             <ol>
                 <li>Initials - ##</li>
             </ol>
             <button class="back-button">Go Back</button>
-            <button class="clear-button">Clear High Score</button>
+            <button class="clear-button">Clear High Scores</button>
         </section>
     
     </main>

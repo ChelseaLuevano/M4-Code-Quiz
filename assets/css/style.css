@@ -2,6 +2,7 @@
 :root {
     --dark-color: rgb(54, 25, 129);
     --light-color:rgb(214, 58, 214);
+    --button-text-color: white;
 }
 
 
@@ -38,20 +39,32 @@ header nav a {
     flex-direction: column;
     margin: 8%;
     padding: 2%;
-
-    
     
 }
 
+/* h1 styling which includes quiz title, question prompts, all done title, and highscores title */
 h1 {
     font-size: 150%;
+    margin: 0.5%;
+}
+
+p {
+    margin: 0.5%;
 }
 
 #start-container {
-    /* justify-content: center; */
+    
+}
+
+/* start-button styling */
+.start-button {
+    width: 12%;
 }
 
 button {
-    margin-top: 2%;
-    margin-bottom: 2% ;
+    margin: 0.5%;
+    padding: 1%;
+    border-radius: 4px;
+    background-color: var(--dark-color);
+    color: var(--button-text-color);
 }
