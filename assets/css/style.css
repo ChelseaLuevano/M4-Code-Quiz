@@ -1,0 +1,18 @@
+
+
+
+/* Styling for "View High Scores Link" */
+.header nav {
+    display: inline-block;
+}
+
+/* Styling for Timer */
+.timer {
+    float: right;
+}
+
+
+/* Remove bullets from answer button list */
+.questions-container ul {
+    list-style-type: none;
+}

@@ -20,7 +20,7 @@ let answer3Text = document.getElementById("answer3");
 let answer4Text = document.getElementById("answer4");
 let lastQuestionResult = document.getElementById("result");
 let finalScore = document.getElementById("final-score");
-let initials = document.getElementById("initials").value;
+let userInitials = document.getElementById("initials").value;
 
 // Button Global Variables
 let startButton = document.querySelector(".start-button");
@@ -137,7 +137,7 @@ function nextQuestion() {
   
 // Win Game Function
 function winGame () {
-    console.log("You Win")
+    console.log("You completed the quiz")
 }
 
 // Lose Game Function
@@ -153,7 +153,7 @@ function startTimer() {
     if (timerCount > 0) {
         timerElement.textContent = timerCount;
       // Tests if win condition is met
-      if (questions.length === currentQuestionIndex) 
+      if (currentQuestionIndex > 6) 
         winGame()
       }
     // Tests if time has run out
@@ -166,18 +166,47 @@ function startTimer() {
  
 }
 
-// Determine User's final score to display on page
-finalScore.textContent = score;
+// End Game Function
+function endGame() {
+    doneContainer.style.display = 'block';
+    questionsContainer.style.display ='none';
+    resultContainer.style.display = 'block';
+    clearInterval(timer);
+    // Determine User's final score to display on page
+    finalScore.textContent = score;
+    }
+    
+// Submit Button Event Listener
+submitButton.addEventListener("click", highScoresDisplay);
 
-// User saves game score to High Scores 
-scoreRecord = localStorage.getItem(initials+ " - " + score );
-console.log(scoreRecord);
+ // User saves game score to High Scores 
+//  scoreRecord = localStorage.getItem(initials+ " - " + score );
 
 
-let highScoresData = document.createElement("li");
-let userHighScore = document.createTextNode(scoreRecord);
-highScoresData.appendChild(userHighScore);
-document.getElementById("scores-container").appendChild(highScoresData);
+// When User submits initials information, display high scores page
+function highScoresDisplay (){
+    doneContainer.style.display = 'none';
+    scoresContainer.style.display = 'block'; 
+    resultContainer.style.display = 'none';
+
+    userInitials.textContent = initials.value
+
+    // Create an ordered list element to store highscores 
+    let highScoresList = document.createElement("ol");
+
+    // Create ordered list items
+    let userScore1 = document.createElement("li");
+    let userScore2 = document.createElement("li");
+    let userScore3 = document.createElement("li");
+    let userScore4 = document.createElement("li");
+
+    let userHighScore = document.createTextNode("highscore");
+    highScoresList.appendChild(userHighScore);
+    document.getElementById("scores-container").appendChild(highScoresList);
+
+    console.log(scoreRecord);
+}
+
 
     //     if (scoreRecord === null) {
     //         score = 0;
@@ -185,20 +214,3 @@ document.getElementById("scores-container").appendChild(highScoresData);
     //      //If a value is retrieved from client storage set the winCounter to that value
     //         score = storedRecord;
     //     }
-
-// Submit Button Event Listener
-submitButton.addEventListener("click", highScoresDisplay);
-
-// When User submits initials information, display high scores page
-function highScoresDisplay (){
-    doneContainer.style.display = 'none';
-    scoresContainer.style.display = 'block';
-}
-
-// End Game Function
-function endGame() {
-    doneContainer.style.display = 'block';
-    questionsContainer.style.display ='none';
-    clearInterval(timer);
-    }
-    
