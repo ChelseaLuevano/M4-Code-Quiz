@@ -20,6 +20,7 @@ let answer3Text = document.getElementById("answer3");
 let answer4Text = document.getElementById("answer4");
 let lastQuestionResult = document.getElementById("result");
 let finalScore = document.getElementById("final-score");
+let viewHighScores = document.getElementById("view-high-scores");
 let userInitials = document.getElementById("initials").value;
 
 // Variables by Query Selector
@@ -175,16 +176,16 @@ function endGame() {
     questionsContainer.style.display ='none';
     resultContainer.style.display = 'block';
     clearInterval(timer);
+    
     // Determine User's final score to display on page
     finalScore.textContent = score;
-    }
+  }
     
 // Submit Button Event Listener
 submitButton.addEventListener("click", highScoresDisplay);
 
  // User saves game score to High Scores 
 //  scoreRecord = localStorage.getItem(initials+ " - " + score );
-
 
 let highScoresStaticList = [{userInitials:'jfk',score:'3'}, {userInitials:'lax', score:'3'},
     {userInitials:'lax',score:'1'}
@@ -195,10 +196,21 @@ function highScoresDisplay (){
     doneContainer.style.display = 'none';
     scoresContainer.style.display = 'block'; 
     resultContainer.style.display = 'none';
+    startContainer.style.display = 'none';
+
+    // initialsRequirements ();
+    // // initialsRequirements
+    // function initialsRequirements (){
+    //     if (!initials.value.length === 3) {
+    //         alert("Enter only 3 letters.");
+    //     }
+    }
+    
 
     userInitials.textContent = initials.value;
 
-    highScoreBoard.textContent = highScoresStaticList.userInitials[0] + highScoresStaticList.score[0] ;
+
+    // highScoreBoard.textContent = highScoresStaticList.userInitials[0] + highScoresStaticList.score[0] ;
 
     // // Create an ordered list element to store highscores 
     // let highScoresList = document.createElement("ol");
@@ -215,7 +227,7 @@ function highScoresDisplay (){
     // document.getElementById("scores-container").appendChild(highScoresList);
 
     // console.log(scoreRecord);
-}
+
 
 
     //     if (scoreRecord === null) {
@@ -229,7 +241,7 @@ function highScoresDisplay (){
 backButton.addEventListener("click",goBack);
 
 function goBack (){
-    doneContainer.style.display = 'block';
+    startContainer.style.display = 'block';
     scoresContainer.style.display = 'none'; 
 };
 
@@ -240,3 +252,7 @@ clearButton.addEventListener("click",clearScores);
 function clearScores() {
 
 };
+
+// View High Scores will take user to High Scores Container Content when clicked
+viewHighScores.addEventListener("click",highScoresDisplay);
+
