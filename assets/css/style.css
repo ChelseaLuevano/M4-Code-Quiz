@@ -17,7 +17,7 @@ header nav {
 }
 
 /* Styling for "View High Scores Link" */
-header nav a {
+header nav p {
     color: var(--light-color);
     text-decoration: none;
     font-weight: normal;
