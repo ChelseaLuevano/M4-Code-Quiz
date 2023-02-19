@@ -1,7 +1,7 @@
 
 :root {
     --dark-color: rgb(54, 25, 129);
-    --light-color:rgb(214, 58, 214);
+    --light-color:rgb(176, 47, 188);
     --button-text-color: white;
 }
 
@@ -38,6 +38,7 @@ header nav p {
     display: flex;
     flex-direction: column;
     margin: 8%;
+    margin-left: 20%;
     padding: 2%;
     
 }
@@ -73,7 +74,20 @@ button {
     width: 12%;
 }
 
+/* content should appear all in one row */
 #done-container div {
     display:flex;
     flex-direction: row;
 }
+
+/* All answer choices should have same size despite text length */
+.box {
+    width: 25%;
+    text-align: left;
+}
+
+/* Hover over button and color changes */
+button:hover{
+    background-color: var(--light-color);
+}
+
