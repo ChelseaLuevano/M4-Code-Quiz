@@ -21,12 +21,12 @@ let answer4Text = document.getElementById("answer4");
 let lastQuestionResult = document.getElementById("result");
 let finalScore = document.getElementById("final-score");
 let viewHighScores = document.getElementById("view-high-scores");
-let userInitials = document.getElementById("initials").value;
+let userInitials = document.getElementById("initials");
 
 // Variables by Query Selector
 let highScoreBoard= document.querySelector("#scores-container ol");
 
-    // Button Global Variables
+// Button Global Variables
 let startButton = document.querySelector(".start-button");
 let clearButton = document.querySelector(".clear-button");
 let backButton = document.querySelector(".back-button");
@@ -188,37 +188,49 @@ let highScoresStaticList = [{userInitials:'jfk',score:'3'}, {userInitials:'lax',
 
 // When User submits initials information, display high scores page
 function highScoresDisplay (){
+    
+    // initials input form Requirements
+    if (initials.value.length !== 3) {
+        alert("Enter only 3 letters.");
+        return;
+        }
+    
     doneContainer.style.display = 'none';
     scoresContainer.style.display = 'block'; 
     resultContainer.style.display = 'none';
     startContainer.style.display = 'none';
 
-    // initialsRequirements ();
-    // // initialsRequirements
-    // function initialsRequirements (){
-    //     if (!initials.value.length === 3) {
-    //         alert("Enter only 3 letters.");
-    //     }
+   
+    // Getting whatever exists in local storage 
+    const highScores = JSON.parse(localStorage.getItem("highscores")) || [];
+    console.log(highScores);
+   
 
-     // Placeholder static array for scores textContent 
-    highScoreBoard.textContent = highScoresStaticList[0].userInitials + " - " + highScoresStaticList[0].score;
+    // Adding new userInitials and score to an array
+    highScores.push({
+        userInitials: userInitials.value,
+        score
+    })
 
-    // Capture data for High Scores Board: Score is already defined outside of this function so this is defining intials value put in form. 
-    userInitials.textContent = initials.value;
-    
-    //Loop to go through high scores array and create new list items under ordered list
-    for (let i = 0; i < highScoresStaticList.length; i++) {
+    // Clearing out the highScore Board elemnents on DOM
+    highScoreBoard.innerHTML = "";
+  
+    //Loop to go through local storage high scores array to display previous users and their high scores
+    for (let i = 0; i < highScores.length; i++) {
         newLi = document.createElement("li");
-        newLi.textContent = highScoresStaticList[i].userInitials + " - " + highScoresStaticList[i].score;
+        newLi.textContent = highScores[i].userInitials + " - " + highScores[i].score;
         highScoreBoard.appendChild(newLi);
     }
-  
-    // Save user current score and initials to High Score Board
-    currentPlayerInitials = localStorage.setItem("initials", JSON.stringify(initials));
-    currentUserScore =localStorage.setItem("score", JSON.stringify(score));
+    
+    // Using array to update local storage
+    localStorage.setItem("highscores", JSON.stringify(highScores));
+    console.log(userInitials.value);
 
-    // console.log(scoreRecord);
+    // Resetting the user intials input form so that the previously entered intials aren't still appearing in form
+      userInitials.value = ""
+   
 }
+
 // Back Button Event Listener
 backButton.addEventListener("click",goBack);
 
@@ -232,7 +244,10 @@ clearButton.addEventListener("click",clearScores);
 
 // this will delete the localStorage data somehow
 function clearScores() {
-
+    // clear local storage
+    localStorage.clear();
+    // clear DOM
+    highScoreBoard.innerHTML = "";
 };
 
 // View High Scores will take user to High Scores Container Content when clicked
