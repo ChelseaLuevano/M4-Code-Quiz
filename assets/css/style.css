@@ -54,10 +54,10 @@ p {
     margin: 0.5%;
 }
 
-/* 
+
 #start-container {
-    
-} */
+    text-align: center; 
+}
 
 
 /* All buttons styling */
@@ -71,7 +71,8 @@ button {
 
 /* start-button styling */
 .start-button {
-    width: 12%;
+    width: 14%;
+    margin-left: 45%;
 }
 
 /* content should appear all in one row */
