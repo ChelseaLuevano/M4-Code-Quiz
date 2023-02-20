@@ -206,14 +206,18 @@ function highScoresDisplay (){
     // Capture data for High Scores Board: Score is already defined outside of this function so this is defining intials value put in form. 
     userInitials.textContent = initials.value;
     
+    for (let i = 0; i < highScoresStaticList.length; i++) {
+        newLi = document.createElement("li");
+        newLi.textContent = highScoresStaticList[i].userInitials + " - " + highScoresStaticList[i].score;;
+    }
+  
     // Save user current score and initials to High Score Board
     currentPlayerInitials = localStorage.setItem("initials", JSON.stringify(initials));
     currentUserScore =localStorage.setItem("score", JSON.stringify(score));
 
-    // // Create ordered list items
-    // let userScore1 = document.createElement("li");
-    newLi = document.createElement("li");
-    document.body.appendChild
+    // // Create ordered list items "li"
+    newLi = document.createElement(userInitials);
+    document.body.appendChild(newLi);
 
    
     // highScoresList.appendChild(userHighScore);
