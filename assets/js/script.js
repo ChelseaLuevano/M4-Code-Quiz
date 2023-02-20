@@ -151,7 +151,7 @@ function startTimer() {
   timer = setInterval(function() {
     timerCount--;
     if (timerCount > 0) {
-        timerElement.textContent = timerCount;
+        timerElement.textContent ="Time: " + timerCount;
       // Tests if win condition is met
       if (currentQuestionIndex > 6) 
         winGame()
@@ -180,9 +180,8 @@ function endGame() {
 // Submit Button Event Listener
 submitButton.addEventListener("click", highScoresDisplay);
 
- // User saves game score to High Scores 
-//  scoreRecord = localStorage.getItem(initials+ " - " + score );
 
+// Placeholder array for scores
 let highScoresStaticList = [{userInitials:'jfk',score:'3'}, {userInitials:'lax', score:'3'},
     {userInitials:'lax',score:'1'}
 ];
@@ -200,39 +199,28 @@ function highScoresDisplay (){
     //     if (!initials.value.length === 3) {
     //         alert("Enter only 3 letters.");
     //     }
-    }
-    
 
+     // Placeholder static array for scores textContent 
+    highScoreBoard.textContent = highScoresStaticList[0].userInitials + " - " + highScoresStaticList[0].score;
+
+    // Capture data for High Scores Board: Score is already defined outside of this function so this is defining intials value put in form. 
     userInitials.textContent = initials.value;
-
-
-    // highScoreBoard.textContent = highScoresStaticList.userInitials[0] + highScoresStaticList.score[0] ;
-
-    // // Create an ordered list element to store highscores 
-    // let highScoresList = document.createElement("ol");
+    
+    // Save user current score and initials to High Score Board
+    currentPlayerInitials = localStorage.setItem("initials", JSON.stringify(initials));
+    currentUserScore =localStorage.setItem("score", JSON.stringify(score));
 
     // // Create ordered list items
     // let userScore1 = document.createElement("li");
-    // let userScore2 = document.createElement("li");
-    // let userScore3 = document.createElement("li");
-    // let userScore4 = document.createElement("li");
+    newLi = document.createElement("li");
+    document.body.appendChild
 
-
-    // let userHighScore = document.createTextNode("highscore");
+   
     // highScoresList.appendChild(userHighScore);
     // document.getElementById("scores-container").appendChild(highScoresList);
 
     // console.log(scoreRecord);
-
-
-
-    //     if (scoreRecord === null) {
-    //         score = 0;
-    //     } else {
-    //      //If a value is retrieved from client storage set the winCounter to that value
-    //         score = storedRecord;
-    //     }
-
+}
 // Back Button Event Listener
 backButton.addEventListener("click",goBack);
 
