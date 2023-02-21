@@ -46,6 +46,17 @@ header nav p {
 h1 {
     font-size: 150%;
     margin: 0.5%;
+    padding: 2%;
+}
+
+/* Give spacing between paragraph text */
+p {
+    padding: 2%;
+}
+
+/* To prevent view-high-scores paragraph from appearing on two lines per previous styling rule */
+#view-high-scores {
+    padding: 0%;
 }
 
 .question-content p {
@@ -109,6 +120,9 @@ video {
     .quiz {
         margin: 1%;
         margin-left: 3%;
+        padding-top:20%;
+        font-size: 150%;
+        flex-wrap: wrap;
     }
     header nav p {
         font-size: 150%;
@@ -121,9 +135,18 @@ video {
         margin-left: 37%;
         margin-right: 37%;
     }
+    .submit-button {
+        display: block;
+        width: 95%;
+    }
+    #done-container div {
+        flex-wrap: wrap;
+    }
     .box {
         width: 40%;
     }
+
+    
  }
  
  /* Tablet Styling */
@@ -132,5 +155,5 @@ video {
         margin: 1%;
         margin-left: 3%;
     }
-  
+
  }
