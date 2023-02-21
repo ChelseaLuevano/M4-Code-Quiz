@@ -48,6 +48,9 @@ h1 {
     margin: 0.5%;
 }
 
+.question-content p {
+   margin: 15%;
+}
 /* Styling for start container text */
 #start-container {
     text-align: center; 
@@ -123,3 +126,11 @@ video {
     }
  }
  
+ /* Tablet Styling */
+@media screen and (min-width: 480px) and (max-width: 780px) { 
+    .quiz {
+        margin: 1%;
+        margin-left: 3%;
+    }
+  
+ }

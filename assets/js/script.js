@@ -189,16 +189,17 @@ let highScoresStaticList = [{userInitials:'jfk',score:'3'}, {userInitials:'lax',
 // When User submits initials information, display high scores page
 function highScoresDisplay (){
     
-    // initials input form Requirements
-    if (initials.value.length !== 3) {
-        alert("Enter only 3 letters.");
-        return;
-        }
+    // initials input form Requirements (not currently working the way I want it to so commented it out --future enhancement)
+    // if (initials.value.length !== 3) {
+    //     alert("Enter only 3 letters.");
+    //     return;
+    //     }
     
     doneContainer.style.display = 'none';
     scoresContainer.style.display = 'block'; 
     resultContainer.style.display = 'none';
     startContainer.style.display = 'none';
+    questionsContainer.style.display ='none';
 
    
     // Getting whatever exists in local storage 
@@ -252,4 +253,3 @@ function clearScores() {
 
 // View High Scores will take user to High Scores Container Content when clicked
 viewHighScores.addEventListener("click",highScoresDisplay);
-
