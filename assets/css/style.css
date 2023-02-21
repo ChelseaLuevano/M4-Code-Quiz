@@ -5,7 +5,7 @@
     --button-text-color: white;
 }
 
-
+/* header styling */
 header {
     margin: 2%;
 }
@@ -13,7 +13,6 @@ header {
 /* Styling for navgiation */
 header nav {
     display: inline-block;
-   
 }
 
 /* Styling for "View High Scores Link" */
@@ -22,11 +21,11 @@ header nav p {
     text-decoration: none;
     font-weight: normal;
 }
+
 /* Styling for Timer */
 .timer-count {
     float: right;
 }
-
 
 /* Remove bullets from answer button list */
 .questions-container ul {
@@ -49,11 +48,17 @@ h1 {
     margin: 0.5%;
 }
 
-
+/* Styling for start container text */
 #start-container {
     text-align: center; 
 }
 
+/* Style Result Text */
+#result {
+    color: lightgray;
+    font-size: 150%;
+    font-style: italic;
+}
 
 /* All buttons styling */
 button {
@@ -66,15 +71,15 @@ button {
 
 /* start-button styling */
 .start-button {
-    width: 14%;
-    margin-left: 45%;
+    width: 16%;
+    margin-left: 42%;
+    margin-right: 42%;
 }
 
 /* content should appear all in one row */
 #done-container div {
     display:flex;
     flex-direction: row;
-    align-content: stretch;
 }
 
 /* All answer choices should have same size despite text length */
@@ -88,3 +93,33 @@ button:hover{
     background-color: var(--light-color);
 }
 
+
+/* To ensure media is never larager than its responsive container */
+img,
+picture,
+video {
+  max-width: 100%;
+}
+
+/* Mobile Styling */
+@media screen and (min-width: 320px) and (max-width: 480px) { 
+    .quiz {
+        margin: 1%;
+        margin-left: 3%;
+    }
+    header nav p {
+        font-size: 150%;
+    }
+    .timer-count {
+        font-size: 150%;
+    }
+    .start-button {
+        width: 26%;
+        margin-left: 37%;
+        margin-right: 37%;
+    }
+    .box {
+        width: 40%;
+    }
+ }
+ 
